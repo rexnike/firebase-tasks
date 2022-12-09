@@ -12,6 +12,26 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBrandSecondColor,
+      floatingActionButton: InkWell(
+        onTap: () {
+          
+        },
+        borderRadius: BorderRadius.circular(14.0),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+          decoration: BoxDecoration(
+            color: kBrandPrimaryColor,
+            borderRadius: BorderRadius.circular(14.0),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Icon(Icons.add, color: Colors.white,),
+              Text("Nueva tarea", style: TextStyle(color: Colors.white),),
+            ],
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -56,11 +76,93 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-
             ),
+
+              Padding(
+                padding: EdgeInsets.all(14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+              "Todas mis tareas",
+              style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.w600,
+                color: kBrandPrimaryColor.withOpacity(0.85),
+                ),
+              ),
+
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 14.0, vertical: 16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(14.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.04),
+                      offset: const Offset(4, 4),
+                      blurRadius: 12.0,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.5),
+                      decoration: BoxDecoration(
+                        color: Color(0xff3E80FF),
+                        borderRadius: BorderRadius.circular(6.0),
+                      ),
+                      child: Text(
+                        "Personal",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+      
+                    divider3(),
+
+                    Text(
+                      "Lorem ipsum dolor sit amet",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w600,
+                        color: kBrandPrimaryColor.withOpacity(0.85),
+                      ),
+                    ),
+                    Text(
+                      "Lorem ipsum dolor sit amet, coonsectetur adipiscing alit, sed to eiusmod tempor incididunt",
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w500,
+                        color: kBrandPrimaryColor.withOpacity(0.75),
+                      ),
+                    ),
+                    divider6(),
+                    Text(
+                      "10/12/2022",
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w500,
+                        color: kBrandPrimaryColor.withOpacity(0.75),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
           ],
         ),
       ),
+    );
+     
+    
 
       //body: StreamBuilder(
         //stream: tasksReference.snapshots(),
@@ -83,6 +185,6 @@ class HomePage extends StatelessWidget {
         //},
       //),
 
-    );
+    
   }
 }
