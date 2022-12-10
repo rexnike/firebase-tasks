@@ -20,13 +20,14 @@ class HomePage extends StatelessWidget {
       return Container(
         padding: EdgeInsets.all(14.0),
         decoration: BoxDecoration(
-          color: Colors.green,
+          color: Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(22.0),
             topRight: Radius.circular(22.0),
             ),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
             children: [
               Text(
@@ -48,6 +49,51 @@ class HomePage extends StatelessWidget {
                 ),
 
                 divider10(),
+                Text("Categoria: "),
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  runAlignment: WrapAlignment.start,
+                  spacing: 10.0,
+                  children: [
+                    FilterChip(
+                  selected: true,
+                  backgroundColor: kBrandSecondColor,
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  selectedColor: categoryColor["Persnal"],
+                  checkmarkColor: Colors.white,
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  label: Text("Personal"), 
+                  onSelected: (bool value){},
+                   ),
+                   FilterChip(
+                  selected: true,
+                  backgroundColor: kBrandSecondColor,
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  selectedColor: categoryColor["Trabajo"],
+                  checkmarkColor: Colors.white,
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  label: Text("Trabajo"), 
+                  onSelected: (bool value){},
+                   ),
+                   FilterChip(
+                  selected: true,
+                  backgroundColor: kBrandSecondColor,
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  selectedColor: categoryColor["Otro"],
+                  checkmarkColor: Colors.white,
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  label: Text("Otro"), 
+                  onSelected: (bool value){},
+                   ),
+                   
+                  ],
+                ),
                 divider10(),
                 ButtonNormalWidget(),
             ],
@@ -157,8 +203,8 @@ class HomePage extends StatelessWidget {
                       //tasks.add(TaskModel.fromJson(myMap));
                     //});
 
-                    tasks = collection.docs.map((e) => TaskModel.fromJson(e.data() as Map<String, dynamic>) ).toList();
-
+                    tasks = collection.docs.map((e) => TaskModel.fromJson(e.data() as Map<String, dynamic>)).toList();
+                          
                     return ListView.builder(
                       itemCount: tasks.length,
                       shrinkWrap: true,
