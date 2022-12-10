@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../general/colors.dart';
 
-class TextFieldSearchWidget extends StatelessWidget {
-  const TextFieldSearchWidget({super.key});
+class TextFieldNormalWidget extends StatelessWidget {
+
+  String hintText;
+  IconData icon;
+
+  TextFieldNormalWidget({
+    required this.hintText,
+    required this.icon, 
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +18,11 @@ class TextFieldSearchWidget extends StatelessWidget {
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 14.0),
                         prefixIcon: Icon(
-                          Icons.search,
+                          icon,
                            size: 18.0, 
                            color: kBrandPrimaryColor.withOpacity(0.6),
                         ),
-                        hintText: "Buscar tarea..",
+                        hintText: hintText,
                         hintStyle: TextStyle(
                           fontSize: 14.0,
                           color: kBrandPrimaryColor.withOpacity(0.6),

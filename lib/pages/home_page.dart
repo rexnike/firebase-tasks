@@ -2,13 +2,60 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tasks/model/task_model.dart';
 import 'package:tasks/ui/general/colors.dart';
+import 'package:tasks/ui/widgets/buttoon_normal_widget.dart';
 import 'package:tasks/ui/widgets/general_widget.dart';
 import 'package:tasks/ui/widgets/item_task_widget.dart';
-import 'package:tasks/ui/widgets/textfield_search.dart';
+import 'package:tasks/ui/widgets/textfield_normal_widget.dart';
 
 class HomePage extends StatelessWidget {
   
-  CollectionReference tasksReference = FirebaseFirestore.instance.collection('tasks');
+  CollectionReference tasksReference = 
+  FirebaseFirestore.instance.collection('tasks');
+
+  showTaskForm(BuildContext context){
+    showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.transparent, 
+    builder: (BuildContext context){
+      return Container(
+        padding: EdgeInsets.all(14.0),
+        decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(22.0),
+            topRight: Radius.circular(22.0),
+            ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Agregar tarea",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15.0,
+                  ),
+                ),
+                divider6(),
+                TextFieldNormalWidget(
+                  hintText: "Titulo",
+                  icon: Icons.text_fields,
+                ),
+                divider10(),
+                TextFieldNormalWidget(
+                  hintText: "Descripcioon", 
+                  icon: Icons.description,
+                ),
+
+                divider10(),
+                divider10(),
+                ButtonNormalWidget(),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +63,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: kBrandSecondColor,
       floatingActionButton: InkWell(
         onTap: () {
+          showTaskForm(context);
         },
 
         borderRadius: BorderRadius.circular(14.0),
@@ -75,7 +123,10 @@ class HomePage extends StatelessWidget {
 
                     divider10(),
 
-                    TextFieldSearchWidget(),
+                    TextFieldNormalWidget(
+                      icon: Icons.search,
+                      hintText: "Buscar tarea...",
+                    ),
                   ],
                 ),
               ),
