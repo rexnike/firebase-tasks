@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:tasks/services/my_services_firestore.dart';
 import 'package:tasks/ui/general/colors.dart';
 import 'package:tasks/ui/widgets/buttoon_normal_widget.dart';
 import 'package:tasks/ui/widgets/general_widget.dart';
@@ -15,7 +16,7 @@ class TaskFormWidget extends StatefulWidget {
   class _TaskFormWidgetState extends State<TaskFormWidget>{
 
     final formkey = GlobalKey<FormState>();
-
+    MyServicesFireStore taskService = MyServicesFireStore(collection: "tasks");
     final TextEditingController _titleController = TextEditingController();
     final TextEditingController _descriptionController = TextEditingController();
     final TextEditingController _dateController = TextEditingController();
@@ -55,7 +56,12 @@ class TaskFormWidget extends StatefulWidget {
           _dateController.text = dateTime.toString().substring(0, 10);
           setState(() {});
         }
+    }
 
+    registerTask(){
+    if(formkey.currentState!.validate()){
+        taskService.addTask();                
+      }
     }
 
   @override
@@ -164,9 +170,7 @@ class TaskFormWidget extends StatefulWidget {
                     divider20(),
                   ButtonNormalWidget(
                     onPressed: (){
-                      if(formkey.currentState!.validate()){
-                        
-                      };
+                      registerTask();
                     },
                   ),
               ],
