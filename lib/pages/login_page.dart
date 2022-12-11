@@ -21,6 +21,7 @@ class _LooginPageState extends State<LooginPage> {
   final formkey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final GoogleSignIn _googleSingIn = GoogleSignIn(scopes: ["email"]);
 
   _login()async{
     try{
@@ -47,9 +48,19 @@ class _LooginPageState extends State<LooginPage> {
     }
   } 
 
-  _loginWithGoogle(){
-    GoogleSignIn _googleSingIn = GoogleSignIn(scopes: []);
-    _googleSingIn.signIn();
+  _loginWithGoogle()async{
+    GoogleSignInAccount? googleSignInAccount = await _googleSingIn.signIn();
+    if(googleSignInAccount == null){
+      return;
+    }
+    GoogleSignInAuthentication _googleSingInAuth = await googleSignInAccount.authentication;
+
+    OAuthCredential credential = GoogleAuthProvider.credential(
+      idToken: _googleSingInAuth.idToken,
+      accessToken: _googleSingInAuth.accessToken,
+    );
+
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   @override
@@ -125,7 +136,9 @@ class _LooginPageState extends State<LooginPage> {
                     text: "Inciar secion con Facebook",
                     icon: "facebook",
                     color: Color(0xff507CC0),
-                    onPressed: (){},
+                    onPressed: (){
+                      _googleSingIn.signOut();
+                    },
                   ),
           
                   divider20(),
