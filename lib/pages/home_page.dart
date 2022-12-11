@@ -24,7 +24,6 @@ class HomePage extends StatelessWidget {
         padding: MediaQuery.of(context).viewInsets,
         child: TaskFormWidget(),
       );
-
       },
     );
   }
@@ -130,7 +129,12 @@ class HomePage extends StatelessWidget {
                       //tasks.add(TaskModel.fromJson(myMap));
                     //});
 
-                    tasks = collection.docs.map((e) => TaskModel.fromJson(e.data() as Map<String, dynamic>)).toList();
+                    //tasks = collection.docs.map((e) => TaskModel.fromJson(e.data() as Map<String, dynamic>)).toList();
+                    tasks = collection.docs.map((e){
+                      TaskModel task = TaskModel.fromJson(e.data() as Map<String, dynamic>);
+                      task.id = e.id;
+                      return task;  
+                    }).toList();
                           
                     return ListView.builder(
                       itemCount: tasks.length,

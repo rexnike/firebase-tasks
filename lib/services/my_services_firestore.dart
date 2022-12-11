@@ -1,6 +1,5 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tasks/main.dart';
 import 'package:tasks/model/task_model.dart';
 
 class MyServicesFireStore{
@@ -17,4 +16,11 @@ class MyServicesFireStore{
    return id;
   }
 
+  Future<void> finishedTask(String tasksId)async{
+    _collectionReference.doc(tasksId).update(
+      {
+        "Status": false,
+      },
+    );
+  }
 }
