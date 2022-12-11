@@ -29,7 +29,9 @@ class ItemTaskWidget extends StatelessWidget {
                   ],
                 ),
 
-              child: Column(
+              child: Stack(
+                children: [
+                  Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
@@ -64,6 +66,48 @@ class ItemTaskWidget extends StatelessWidget {
                         color: kBrandPrimaryColor.withOpacity(0.75),
                       ),
                   ),
+                ],
+              ),
+              Positioned(
+                top: -10,
+                right: -12,
+                child: PopupMenuButton(
+                  elevation: 2,
+                  color: Colors.white,
+                  icon: Icon(Icons.more_vert, color: kBrandPrimaryColor.withOpacity(0.85) ,),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14.0),
+                  ),
+
+                  onSelected: (value) {
+                    print(value);  
+                  },
+                  itemBuilder: (BuildContext context){
+                    return [
+                      PopupMenuItem(
+                        value: 1,
+                        child: Text(
+                          "Editar",
+                          style: TextStyle(
+                            fontSize: 13.0,
+                            color: kBrandPrimaryColor.withOpacity(85.0),
+                           ),
+                          ),
+                        ),
+                        PopupMenuItem(
+                        value: 2,
+                        child: Text(
+                          "Finalizar",
+                          style: TextStyle(
+                            fontSize: 13.0,
+                            color: kBrandPrimaryColor.withOpacity(85.0),
+                           ),
+                          ),
+                        ),
+                    ];
+                      }
+                    ),
+              ),
                 ],
               ),
             );
