@@ -2,6 +2,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tasks/model/user_model.dart';
+import 'package:tasks/pages/home_page.dart';
+import 'package:tasks/services/my_services_firestore.dart';
 import 'package:tasks/ui/general/colors.dart';
 import 'package:tasks/ui/widgets/buttom_custom_widget.dart';
 import 'package:tasks/ui/widgets/general_widget.dart';
@@ -22,15 +25,32 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _fullNameController = TextEditingController();
 
+  MyServicesFireStore userService = MyServicesFireStore(collection: "users");
+
   _registerUser()async{
 
     try{
      
       if(keyForm.currentState!.validate()){
+
       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: _emailController.text, 
-      password: _passwordController.text,
+        email: _emailController.text, 
+        password: _passwordController.text,
       );
+
+      if(userCredential.user !=null){
+
+        UserModel userModel = UserModel(
+          fullName: _fullNameController.text, 
+          email: _emailController.text, 
+          );
+
+        userService.addUser(userModel).then((value) => {
+          if(value.isNotEmpty){
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomePage()), (route) => false),
+          }
+        });
+      }
     }
 
     }on FirebaseAuthException catch(error){

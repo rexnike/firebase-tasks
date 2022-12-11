@@ -1,6 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tasks/model/task_model.dart';
+import 'package:tasks/model/user_model.dart';
 
 class MyServicesFireStore{
 
@@ -23,4 +24,12 @@ class MyServicesFireStore{
       },
     );
   }
+
+ Future<String> addUser(UserModel userModel)async{
+ DocumentReference documentReference = await _collectionReference.add(userModel.ToJson());
+ return documentReference.id;
+  }
+
 }
+
+
