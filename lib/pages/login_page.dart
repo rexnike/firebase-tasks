@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tasks/pages/home_page.dart';
 import 'package:tasks/pages/register_page.dart';
 import 'package:tasks/ui/general/colors.dart';
@@ -43,9 +44,13 @@ class _LooginPageState extends State<LooginPage> {
       }else if(error.code == "worong-password"){
         showSnackBarError(context, "La contraseña es incorrecta");
       }
-
     }
   } 
+
+  _loginWithGoogle(){
+    GoogleSignIn _googleSingIn = GoogleSignIn(scopes: []);
+    _googleSingIn.signIn();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +115,9 @@ class _LooginPageState extends State<LooginPage> {
                     text: "Inciar secion con Google",
                     icon: "google",
                     color: Color(0xfff94b2a),
-                    onPressed: (){},
+                    onPressed: (){
+                      _loginWithGoogle();
+                    },
                   ),
                   
                   divider20(),
