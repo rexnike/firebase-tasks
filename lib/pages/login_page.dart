@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tasks/ui/general/colors.dart';
-import 'package:tasks/ui/widgets/buttoon_normal_widget.dart';
+import 'package:tasks/ui/widgets/buttom_custom_widget.dart';
 import 'package:tasks/ui/widgets/general_widget.dart';
 import 'package:tasks/ui/widgets/textfield_normal_widget.dart';
 import 'package:tasks/ui/widgets/textfield_password_widget.dart';
@@ -61,7 +61,29 @@ class _LooginPageState extends State<LooginPage> {
 
                 divider20(),
 
-                ButtonNormalWidget(onPressed: (){}),
+                ButtonCustomWidget(
+                  text: "Iniciar Secion",
+                  icon: "bx-check",
+                  color: kBrandPrimaryColor,
+                ),
+
+                divider20(),
+                Text("O ingresa con tus redes sociales",),
+
+                divider20(),
+                ButtonCustomWidget(
+                  text: "Inciar secion con Google",
+                  icon: "bx-google",
+                  color: Color(0xfff94b2a),
+                ),
+                
+                divider20(),
+                ButtonCustomWidget(
+                  text: "Inciar secion con Facebook",
+                  icon: "bx-facebook",
+                  color: Color(0xff507CC0),
+                ),
+
             ],
           ),
         ),
