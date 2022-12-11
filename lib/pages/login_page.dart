@@ -66,6 +66,7 @@ class _LooginPageState extends State<LooginPage> {
                   text: "Iniciar Secion",
                   icon: "bx-check",
                   color: kBrandPrimaryColor,
+                  onPressed: (){},
                 ),
 
                 divider20(),
@@ -76,6 +77,7 @@ class _LooginPageState extends State<LooginPage> {
                   text: "Inciar secion con Google",
                   icon: "bx-google",
                   color: Color(0xfff94b2a),
+                  onPressed: (){},
                 ),
                 
                 divider20(),
@@ -83,6 +85,7 @@ class _LooginPageState extends State<LooginPage> {
                   text: "Inciar secion con Facebook",
                   icon: "bx-facebook",
                   color: Color(0xff507CC0),
+                  onPressed: (){},
                 ),
 
                 divider20(),
