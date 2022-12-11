@@ -64,7 +64,7 @@ class _LooginPageState extends State<LooginPage> {
 
                 ButtonCustomWidget(
                   text: "Iniciar Secion",
-                  icon: "bx-check",
+                  icon: "check",
                   color: kBrandPrimaryColor,
                   onPressed: (){},
                 ),
@@ -75,7 +75,7 @@ class _LooginPageState extends State<LooginPage> {
                 divider20(),
                 ButtonCustomWidget(
                   text: "Inciar secion con Google",
-                  icon: "bx-google",
+                  icon: "google",
                   color: Color(0xfff94b2a),
                   onPressed: (){},
                 ),
@@ -83,7 +83,7 @@ class _LooginPageState extends State<LooginPage> {
                 divider20(),
                 ButtonCustomWidget(
                   text: "Inciar secion con Facebook",
-                  icon: "bx-facebook",
+                  icon: "facebook",
                   color: Color(0xff507CC0),
                   onPressed: (){},
                 ),
