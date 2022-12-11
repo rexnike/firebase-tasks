@@ -1,22 +1,24 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tasks/pages/register_page.dart';
 import 'package:tasks/ui/general/colors.dart';
 import 'package:tasks/ui/widgets/buttom_custom_widget.dart';
 import 'package:tasks/ui/widgets/general_widget.dart';
 import 'package:tasks/ui/widgets/textfield_normal_widget.dart';
 import 'package:tasks/ui/widgets/textfield_password_widget.dart';
 
-class LooginPage extends StatefulWidget {
-  
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
   @override
-  State<LooginPage> createState() => _LooginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LooginPageState extends State<LooginPage> {
+class _RegisterPageState extends State<RegisterPage> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +32,14 @@ class _LooginPageState extends State<LooginPage> {
 
               divider40(),
               SvgPicture.asset(
-                'assets/images/candado.svg',
+                'assets/images/registro.svg',
                 height: 180.0,
                 ),
 
                 divider40(),
 
                 Text(
-                  "Iniciar Sesion",
+                  "Registrate",
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w600,
@@ -45,7 +47,15 @@ class _LooginPageState extends State<LooginPage> {
                   ),
                   ),
 
+                divider20(),
+                  TextFieldNormalWidget(
+                  hintText: "Nombre Completo", 
+                  icon: Icons.email, 
+                  controller: _fullNameController,
+                ),
+
                 divider10(),
+                divider6(),
 
                 TextFieldNormalWidget(
                   hintText: "Correo Electronico", 
@@ -63,49 +73,10 @@ class _LooginPageState extends State<LooginPage> {
                 divider20(),
 
                 ButtonCustomWidget(
-                  text: "Iniciar Secion",
+                  text: "Registrate Ahora",
                   icon: "bx-check",
                   color: kBrandPrimaryColor,
                 ),
-
-                divider20(),
-                Text("O ingresa con tus redes sociales",),
-
-                divider20(),
-                ButtonCustomWidget(
-                  text: "Inciar secion con Google",
-                  icon: "bx-google",
-                  color: Color(0xfff94b2a),
-                ),
-                
-                divider20(),
-                ButtonCustomWidget(
-                  text: "Inciar secion con Facebook",
-                  icon: "bx-facebook",
-                  color: Color(0xff507CC0),
-                ),
-
-                divider20(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("¿Aun no estas registrado?"),
-
-                  divider10idth(),
-
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterPage()),);
-                    },
-                    child: Text("Registrate",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: kBrandPrimaryColor,
-                      ),
-                      ),
-                    ),
-                ],
-              ),
             ],
           ),
         ),
