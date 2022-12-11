@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:tasks/model/task_model.dart';
 import 'package:tasks/services/my_services_firestore.dart';
 import 'package:tasks/ui/general/colors.dart';
 import 'package:tasks/ui/widgets/buttoon_normal_widget.dart';
@@ -60,7 +61,24 @@ class TaskFormWidget extends StatefulWidget {
 
     registerTask(){
     if(formkey.currentState!.validate()){
-        taskService.addTask();                
+
+      TaskModel taskModel = TaskModel(
+        title: _titleController.text, 
+        description: _descriptionController.text, 
+        date: _dateController.text, 
+        category: categorySelect, 
+        status: true,
+        );
+        taskService.addTask(taskModel).then((value){
+          if(value.isNotEmpty){
+            
+            Navigator.pop(context);
+            showSnackBarSuccess(context, "La tarea fue registrada con exito");
+          }
+        }).catchError((error){
+            showSnackBarError(context, "Hubo un error, Intente de nuevo");
+            Navigator.pop(context);
+        });                
       }
     }
 
