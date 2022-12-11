@@ -1,5 +1,4 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tasks/model/task_model.dart';
 import 'package:tasks/ui/widgets/item_task_widget.dart';
