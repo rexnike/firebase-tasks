@@ -1,9 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.livcode.tasks">
-   <application
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
         android:label="tasks"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <metadatosandroid: nombre="com.facebook.sdk.ApplicationId"android: valor="@string / facebook_app_id"/>
+        <metadatosandroid: nombre="com.facebook.sdk.ClientToken"android: valor="@string / facebook_client_token"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

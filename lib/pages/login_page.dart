@@ -85,6 +85,10 @@ class _LooginPageState extends State<LooginPage> {
     }
   }
 
+  _loginWithFacebook()async{
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,7 +163,7 @@ class _LooginPageState extends State<LooginPage> {
                     icon: "facebook",
                     color: Color(0xff507CC0),
                     onPressed: (){
-                      _googleSingIn.signOut();
+                      _loginWithFacebook();
                     },
                   ),
           
