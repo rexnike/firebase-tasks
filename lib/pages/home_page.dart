@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tasks/model/task_model.dart';
+import 'package:tasks/pages/login_page.dart';
 import 'package:tasks/ui/general/colors.dart';
 import 'package:tasks/ui/widgets/general_widget.dart';
 import 'package:tasks/ui/widgets/item_task_widget.dart';
@@ -15,6 +18,8 @@ class HomePage extends StatelessWidget {
   
   CollectionReference tasksReference = 
   FirebaseFirestore.instance.collection('tasks');
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   showTaskForm(BuildContext context){
     showModalBottomSheet(
@@ -80,18 +85,35 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Bienvenido, Ryoko", style: TextStyle(
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+
+                            Text("Bienvenido, Ryoko", style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w500,
                       color: kBrandPrimaryColor,
                         ),
                       ),
                 
-                    Text("Mis tareas", style: TextStyle(
+                            Text("Mis tareas", style: TextStyle(
                       fontSize: 36.0,
                       fontWeight: FontWeight.w600,
                       color: kBrandPrimaryColor,
                       ),
+                    ),
+
+                          ],
+                        ),
+                        IconButton(onPressed: (){
+                          FacebookAuth.instance.logOut();
+                          _googleSignIn.signOut();
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>LooginPage()), (route) => false);
+                        } , icon: Icon(Icons.exit_to_app, color: kBrandPrimaryColor,),),
+                      ],
                     ),
 
                     divider10(),
